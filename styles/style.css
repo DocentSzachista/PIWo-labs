@@ -1,0 +1,77 @@
+/* styles for tags   */
+body{
+    background-color: grey;
+    
+}
+
+a, a:hover, a:visited, a:active {
+    color: inherit;
+    text-decoration: none;
+}
+ol{
+    background-color: white;
+}
+ul{
+    list-style-type: none;
+}
+
+a:hover{
+    color: red;
+}
+
+h2{
+    text-align: center;
+}
+
+/******************
+ classes 
+ ******************/
+ 
+.btn {
+    background-color: #00C851;
+    border: 2px solid  #00C851;
+    font-size: 1em;
+    border-radius: 10%;
+} 
+.btn:hover{
+    filter: brightness(150%) ;
+}
+.order-list-elements{
+    display: flex;
+    flex-direction: column;
+    color: grey ;
+    flex-wrap: wrap;
+    font-size: 1.5em;
+    font-family: sans-serif;
+    font-weight: 600;
+    margin: 0.5em;
+}
+
+.unordered-list{
+    color: green;
+    font-size: 0.9em; 
+}
+.unordered-list-elements{
+    margin-top:    0.2em;
+    margin-bottom: 0.2em;
+}
+
+
+/* 
+    id's
+*/
+#main-wrapper{
+    position: relative;
+    margin: auto;
+    display: block;
+ 
+}
+#div-wrapper{
+    position: relative;
+    margin: auto;
+    display: block;
+    width: 20%;
+    height: 20%;
+    min-width: 220px;
+    min-height: 220px;
+}
