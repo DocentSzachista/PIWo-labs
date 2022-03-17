@@ -1,0 +1,35 @@
+<!-- Wszystko co nie jest napisem, liczba, booleanem jest undefined 
+     Null NAN
+     symbol 
+-->
+<html>
+     <head>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+          <title>Kalkulator</title>
+          <script src="./demo.js"></script>
+          <style>
+               #modal{
+                    display: none;
+                    z-index: 1;
+                    position: fixed;
+                    background-color: rgb(49, 136, 49);
+                    width: 100%;
+                    height: 100%;
+                    left: 0;
+                    top: 0;
+               }
+          </style>
+     </head>
+     <body>
+               <input id="numb-a"/>
+               <input id="numb-b"/>
+               <button id="add" onclick="adder()">+</button>
+
+               <div id="operations-list">
+                    <h2>Wykonane operacje</h2>
+               </div>
+     </body>
+     <div id="modal">
+          <h1>Cos nie pyklo </h1>
+     </div>
+</html>

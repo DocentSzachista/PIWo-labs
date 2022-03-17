@@ -1,0 +1,16 @@
+.checked{
+    width: 300px;
+    text-decoration: line-through;
+    background-color: grey;
+}
+.unchecked{
+    width: 300px;
+}
+.data {
+    width: 100px;
+    text-decoration: none !important;
+}
+li{
+    margin-bottom: 40px;
+    list-style-type: none;
+}
