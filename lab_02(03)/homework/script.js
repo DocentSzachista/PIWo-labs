@@ -54,11 +54,10 @@ const liElement = (todo)=>{
         
         // to delete element from array 
         todoList = $.grep(todoList, function(e){return e.id === todo.id }, true);
-        console.log(todoList);
         render();
         trashElement = todo;
         renderTrash();
-        //$(`#${todo.id}`).parent().appendTo("#rubbish");
+      
     });
 
     newLi.appendChild(todoSpan);
@@ -72,12 +71,13 @@ const renderTrash = () => {
 
 
 
-    const newLi =       document.createElement("li");
+    const newLi = document.createElement("li");
     newLi.setAttribute("id", trashElement.id);
     const todoElement = document.createElement("span");
     todoElement.innerHTML = trashElement.content;
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = " X ";
+    deleteButton.className = "btn btn-warning";
     deleteButton.addEventListener("click", ()=>{
         $('#modal').toggle();
         
@@ -86,6 +86,9 @@ const renderTrash = () => {
     newLi.appendChild(deleteButton);
     list.appendChild(newLi);
 };
+
+
+
 const returnTodo = () =>{
     if($.isEmptyObject(trashElement)!== true)
     {
@@ -95,14 +98,14 @@ const returnTodo = () =>{
         render();
     }
 };
-const remove = ()=>{
-    $(`#${trashElement.id}`).remove();
-    trashElement = {};
+
+const remove = (toRemove)=>{
+    if(toRemove){
+        $(`#${trashElement.id}`).remove();
+        trashElement = {};
+    }
     $("#modal").toggle();
 };
-const close = ()=>{
-    $("#modal").toggle();
-}
 
 
 
@@ -119,4 +122,4 @@ const onProvidingInput = () =>{
 const getDate = () =>{
     const date= new Date();
     return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay()}`;
-}
+};
