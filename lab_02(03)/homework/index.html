@@ -6,19 +6,34 @@
    
     <script src="./script.js"></script>
     <link rel="stylesheet" href="./style.css">
-    <body>
+    <body >
         <div class="d-flex justify-content-center">
+          <div class="flex-column">
+            <div class="row">  
             <div class="col-auto">
-                <input id="todo-input" class="form-control" type="text" placeholder="add your todo element" oninput="onProvidingInput()">
+                  <input id="todo-input" class="form-control" type="text" placeholder="add your todo element" oninput="onProvidingInput()">
+              </div>
+              <div class="col-auto">
+                  <input id="add-button" class="btn btn-success" type="button" value="+" onclick="addElement()" disabled>
+              </div>
             </div>
-            <div class="col-auto">
-                <input id="add-button" class="btn btn-success" type="button" value="+" onclick="addElement()" disabled>
+            <div class="row">
+             <input type="radio" name="list" value="todo-list" id="todo">
+             <label for="todo">Todo list</label>
+             <input type="radio" name="list" value="important-list" id="important-todo">
+             <label for="important-todo">Important todo list</label>
             </div>
+          </div>
         </div>
         <div class="d-flex flex-row  justify-content-around">
             <div id = "todo-wrapper">
                 <h1> Todo list </h1>
                 <ul id="todo-list" class="d-flex justify-content-center flex-column">
+                </ul>
+            </div>
+            <div id="important-todo-wrapper">
+                <h1>More important todo list</h1>
+                <ul id="important-list" class="d-flex justify-content-center flex-column">
                 </ul>
             </div>
             <div id = "rubbis-can-wrapper">

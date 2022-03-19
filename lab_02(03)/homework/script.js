@@ -4,7 +4,6 @@
 
 // section for script wide variables
 let todoList = [];
-let importantTodoList = [];
 let trashElement = {};
 
 
@@ -18,10 +17,7 @@ const addElement  = () => {
         alert("No input provided");
         return;
     }
-    const todo = {
-        content: input.value,
-        id: Date.now(),
-    };
+
     const radios = document.querySelectorAll('input[name="list"]');
     let selected;
     for(const radioButton of radios){
@@ -30,30 +26,26 @@ const addElement  = () => {
             break;
         }
     }
-   switch(selected){
-       case 'normal':
-           todoList.push(todo);
-           break;
-       case 'important':
-           importantTodoList.push(todo);
-           break;
-       default:
-           console.warn(`Option was not provided ${selected}`);
-    }
-    
-    render(todoList, "todo-list");
+    const todo = {
+        list: selected,
+        content: input.value,
+        id: Date.now(),
+    };
+    todoList.push(todo);
     input.value = "";
+    render();
 };
-const render = (todos, id) => {
-    const list = document.getElementById(id);
-    //const importantList = document.getElementById("important-list");
-    // we want always to re-render whole list 
-    list.innerHTML ="";
-    for (const todo of todos){
+
+const render = () => {
+    document.getElementById("todo-list").innerHTML="";
+    document.getElementById("important-list").innerHTML="";
+    for (const todo of todoList){
         const newLi = liElement(todo);
-        list.appendChild(newLi);
+        //list.appendChild(newLi);
+        document.getElementById(todo.list).appendChild(newLi);
     }
 };
+
 const liElement = (todo)=>{
     const newLi = document.createElement("li");
     const todoSpan = document.createElement("span");
@@ -81,11 +73,10 @@ const liElement = (todo)=>{
     deleteButton.addEventListener("click", ()=>{
         
         // to delete element from array 
-        todoList = $.grep(todoList, function(e){return e.id === todo.id }, true);
-        render(todoList);
+        todoList =  $.grep(todoList, function(e){return e.id === todo.id }, true);
+        render();
         trashElement = todo;
         renderTrash();
-      
     });
 
     newLi.appendChild(todoSpan);
@@ -94,6 +85,7 @@ const liElement = (todo)=>{
     newLi.appendChild(deleteButton);
     return newLi;
 };
+
 const renderTrash = () => {
     const list = document.getElementById("rubbish");
     list.innerHTML="";
@@ -115,6 +107,7 @@ const renderTrash = () => {
 
 
 
+
 const returnTodo = () =>{
     if($.isEmptyObject(trashElement)!== true)
     {
@@ -122,6 +115,7 @@ const returnTodo = () =>{
         trashElement = {};
         $("#rubbish").html("");
         render();
+        console.log(todoList);
     }
 };
 
