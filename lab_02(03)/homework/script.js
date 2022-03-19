@@ -1,7 +1,16 @@
 "use-strict"
 
+
+
+// section for script wide variables
 let todoList = [];
+let importantTodoList = [];
 let trashElement = {};
+
+
+// section for functions 
+
+
 
 const addElement  = () => {
     const input = document.getElementById("todo-input");
@@ -13,15 +22,34 @@ const addElement  = () => {
         content: input.value,
         id: Date.now(),
     };
-    todoList.push(todo);
-    render();
+    const radios = document.querySelectorAll('input[name="list"]');
+    let selected;
+    for(const radioButton of radios){
+        if(radioButton.checked){
+            selected = radioButton.value;
+            break;
+        }
+    }
+   switch(selected){
+       case 'normal':
+           todoList.push(todo);
+           break;
+       case 'important':
+           importantTodoList.push(todo);
+           break;
+       default:
+           console.warn(`Option was not provided ${selected}`);
+    }
+    
+    render(todoList, "todo-list");
     input.value = "";
 };
-const render = () => {
-    const list = document.getElementById("todo-list");
+const render = (todos, id) => {
+    const list = document.getElementById(id);
+    //const importantList = document.getElementById("important-list");
     // we want always to re-render whole list 
     list.innerHTML ="";
-    for (const todo of todoList){
+    for (const todo of todos){
         const newLi = liElement(todo);
         list.appendChild(newLi);
     }
@@ -54,7 +82,7 @@ const liElement = (todo)=>{
         
         // to delete element from array 
         todoList = $.grep(todoList, function(e){return e.id === todo.id }, true);
-        render();
+        render(todoList);
         trashElement = todo;
         renderTrash();
       
@@ -68,9 +96,7 @@ const liElement = (todo)=>{
 };
 const renderTrash = () => {
     const list = document.getElementById("rubbish");
-
-
-
+    list.innerHTML="";
     const newLi = document.createElement("li");
     newLi.setAttribute("id", trashElement.id);
     const todoElement = document.createElement("span");
