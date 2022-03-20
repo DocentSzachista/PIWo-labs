@@ -50,6 +50,7 @@ const liElement = (todo)=>{
     const newLi = document.createElement("li");
     const todoSpan = document.createElement("span");
     todoSpan.innerHTML = todo.content;
+    todoSpan.className = "span";
     const dateSpan = document.createElement("span");
     
     const checkbox = document.createElement("input");
@@ -142,4 +143,28 @@ const onProvidingInput = () =>{
 const getDate = () =>{
     const date= new Date();
     return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDay()}`;
+};
+
+const filter = () =>{
+    const retrievedContent = document.getElementById("filter-todo").value;
+    const radios = document.querySelectorAll('input[name="list"]');
+    let selected;
+    for(const radioButton of radios){
+        if(radioButton.checked){
+            selected = radioButton.value;
+            break;
+        }
+    }
+        let list = document.getElementsByClassName("span");
+        let length = list.length;
+    for(let i = 0 ; i<length; i++){
+        if(list[i].parentNode.parentNode.id === selected){
+            if(list[i].textContent.toUpperCase().includes(retrievedContent.toUpperCase())){
+                list[i].parentNode.style.visibility = "visible";
+            }
+            else{
+                list[i].parentNode.style.visibility = "hidden";
+            }
+        }
+    }
 };

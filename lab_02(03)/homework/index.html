@@ -7,9 +7,12 @@
     <script src="./script.js"></script>
     <link rel="stylesheet" href="./style.css">
     <body >
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-around">
           <div class="flex-column">
-            <div class="row">  
+            <div class="row">
+              <div class="col-auto">
+                <input id="filter-todo" class="form-control" type="text" placeholder="filter your todo" oninput="filter()">
+              </div>  
             <div class="col-auto">
                   <input id="todo-input" class="form-control" type="text" placeholder="add your todo element" oninput="onProvidingInput()">
               </div>
