@@ -38,28 +38,30 @@ const render = () => {
     document.getElementById("important-list").innerHTML="";
     for (const todo of todoList){
         const newLi = liElement(todo);
-        //list.appendChild(newLi);
         document.getElementById(todo.list).appendChild(newLi);
     }
 };
 
 const liElement = (todo)=>{
     const newLi = document.createElement("li");
-    const todoSpan = document.createElement("span");
-    todoSpan.innerHTML = todo.content;
-    todoSpan.className = "span";
-    const dateSpan = document.createElement("span");
+    newLi.className="nested-cell";
     
+    const todoDiv = document.createElement("div");
+    todoDiv.innerHTML = todo.content;
+    todoDiv.className = "span";
+    
+    const dateSpan = document.createElement("span");
+    const buttonsDiv = document.createElement("div");
     const checkbox = document.createElement("input");
     checkbox.setAttribute("type", "checkbox");
     checkbox.addEventListener("click", ()=>{
         if(checkbox.checked)
         {
-            todoSpan.style.textDecoration = "line-through";
+            todoDiv.style.textDecoration = "line-through";
             dateSpan.innerHTML = getDate();        
         }
         else{
-            todoSpan.style.textDecoration = "";
+            todoDiv.style.textDecoration = "";
             dateSpan.innerHTML = "";
         }
     });
@@ -76,11 +78,14 @@ const liElement = (todo)=>{
         trashElement = todo;
         renderTrash();
     });
-
-    newLi.appendChild(todoSpan);
-    newLi.appendChild(dateSpan);
-    newLi.appendChild(checkbox);
-    newLi.appendChild(deleteButton);
+    todoDiv.appendChild(dateSpan);
+    buttonsDiv.appendChild(checkbox);
+    buttonsDiv.appendChild(deleteButton);
+    newLi.appendChild(todoDiv);
+    newLi.appendChild(buttonsDiv);
+    // newLi.appendChild(dateSpan);
+    // newLi.appendChild(checkbox);
+    // newLi.appendChild(deleteButton);
     return newLi;
 };
 
@@ -89,8 +94,10 @@ const renderTrash = () => {
     list.innerHTML="";
     const newLi = document.createElement("li");
     newLi.setAttribute("id", trashElement.id);
-    const todoElement = document.createElement("span");
+    const todoElement = document.createElement("div");
+    newLi.className="nested-cell";
     todoElement.innerHTML = trashElement.content;
+    const deleteDiv = document.createElement("div");
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = " X ";
     deleteButton.className = "btn btn-warning";
@@ -99,7 +106,9 @@ const renderTrash = () => {
         
     });
     newLi.appendChild(todoElement);
-    newLi.appendChild(deleteButton);
+    deleteDiv.appendChild(deleteButton);
+    newLi.appendChild(deleteDiv);
+    
     list.appendChild(newLi);
 };
 

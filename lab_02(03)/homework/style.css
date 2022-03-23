@@ -1,7 +1,11 @@
+body{
+    background-color: #3c345c;
+    color: aliceblue;
+}
 .checked{
     width: 300px;
     text-decoration: line-through;
-    background-color: grey;
+    background-color: #99a8bb;
 }
 .unchecked{
     width: 300px;
@@ -11,7 +15,6 @@
     text-decoration: none !important;
 }
 li{
-    margin-bottom: 40px;
     list-style-type: none;
 }
 .break{
@@ -27,11 +30,32 @@ header{
 
 
 .grid-container{
-    height: 90vh;
+    
     margin: 2rem;
     display: grid;
     grid-template-columns: 33% 33% 33%;
 }
 .cell{
     text-align: center;
+}
+.nested-grid{
+    /* margin: 2rem; */
+    display: grid;
+    grid-template-rows: auto;
+    
+}
+.nested-cell{
+    width: 50%;
+    background-color: #124c81;
+    padding: 1em;
+    margin-top: 1em;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    word-wrap: break-word;
+    border-radius: 0.2em;
+}
+.nested-cell span {
+    text-decoration: none;
+    display:inline-block;
 }

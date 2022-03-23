@@ -42,20 +42,20 @@
           
            <!--"d-flex flex-row  justify-content-around"  -->
             <div id = "todo-wrapper" class="cell" >
-              <!-- "col list-class" -->
                 <h1> Todo list </h1>
-                <ul id="todo-list" class="d-flex justify-content-center flex-column">
+                <ul id="todo-list" class="nested-grid">
                 </ul>
             </div>
             <div id="important-todo-wrapper" class="cell">
                 <h1>Important</h1>
-                <ul id="important-list" class="d-flex justify-content-center flex-column">
+                <ul id="important-list" class="nested-grid">
+
                 </ul>
             </div>
             <div id = "rubbis-can-wrapper" class="cell">
                 <h1>Trashed</h1>
                 <button id="back" class="btn btn-success" onclick="returnTodo()"> return to do</button>
-                <ul id="rubbish">
+                <ul id="rubbish" class="nested-grid">
 
                 </ul>
             </div>
