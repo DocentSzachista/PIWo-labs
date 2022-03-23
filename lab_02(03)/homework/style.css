@@ -7,7 +7,7 @@
     width: 300px;
 }
 .data {
-    width: 100px;
+    width: 1em;
     text-decoration: none !important;
 }
 li{
@@ -16,4 +16,22 @@ li{
 }
 .break{
     width: 100%;
+}
+header{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.list-style{
+    justify-items: center !important;
+}
+
+
+.grid-container{
+    height: 90vh;
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+.cell{
+    text-align: center;
 }

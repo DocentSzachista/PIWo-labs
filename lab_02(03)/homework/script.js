@@ -17,17 +17,14 @@ const addElement  = () => {
         alert("No input provided");
         return;
     }
-
-    const radios = document.querySelectorAll('input[name="list"]');
-    let selected;
-    for(const radioButton of radios){
-        if(radioButton.checked){
-            selected = radioButton.value;
-            break;
-        }
+    const select = document.getElementById("list-select");
+    console.log(select.value);
+    if(select.value === "select"){
+        console.warn("You didn't choose an option");
+        return;
     }
     const todo = {
-        list: selected,
+        list: select.value,
         content: input.value,
         id: Date.now(),
     };
@@ -106,9 +103,6 @@ const renderTrash = () => {
     list.appendChild(newLi);
 };
 
-
-
-
 const returnTodo = () =>{
     if($.isEmptyObject(trashElement)!== true)
     {
@@ -128,8 +122,6 @@ const remove = (toRemove)=>{
     $("#modal").toggle();
 };
 
-
-
 const onProvidingInput = () =>{
     const retrievedContent = document.getElementById("todo-input").value;
     const button = document.getElementById("add-button");
@@ -147,16 +139,12 @@ const getDate = () =>{
 
 const filter = () =>{
     const retrievedContent = document.getElementById("filter-todo").value;
-    const radios = document.querySelectorAll('input[name="list"]');
-    let selected;
-    for(const radioButton of radios){
-        if(radioButton.checked){
-            selected = radioButton.value;
-            break;
-        }
-    }
-        let list = document.getElementsByClassName("span");
-        let length = list.length;
+    const select = document.getElementById("filter-select");
+    const selected = select.value;
+    
+    const list = document.getElementsByClassName("span");
+    const length = list.length;
+    
     for(let i = 0 ; i<length; i++){
         if(list[i].parentNode.parentNode.id === selected){
             if(list[i].textContent.toUpperCase().includes(retrievedContent.toUpperCase())){
