@@ -156,11 +156,10 @@ const filter = () =>{
     
     for(let i = 0 ; i<length; i++){
         if(list[i].parentNode.parentNode.id === selected){
-            if(list[i].textContent.toUpperCase().includes(retrievedContent.toUpperCase())){
-                list[i].parentNode.style.visibility = "visible";
-            }
-            else{
-                list[i].parentNode.style.visibility = "hidden";
+            if(!list[i].textContent.toUpperCase().includes(retrievedContent.toUpperCase())){
+                list[i].parentNode.style.display = "none";
+            } else{
+                list[i].parentNode.style.display = "";
             }
         }
     }
