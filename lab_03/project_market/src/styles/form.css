@@ -3,4 +3,19 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding-top: 10vh;
+}
+.full-row{
+    width: 100%;
+}
+body{
+    background-color: #212529 ;
+}
+.content-center{
+    text-align: center;
+}
+.form-wrapper{
+    background-color: aliceblue;
+    border-radius: 0.5%;
+    padding: 3%;
 }

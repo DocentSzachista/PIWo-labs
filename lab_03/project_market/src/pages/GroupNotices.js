@@ -40,8 +40,7 @@ class GroupNotice extends React.Component {
         console.log(groupNotices);
         return (
         <div className="card-group ">
-                {groupNoticesHTML}
-
+            {groupNoticesHTML}
         </div>
         );
     }

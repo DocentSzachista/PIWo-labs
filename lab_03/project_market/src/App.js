@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import AddNotice from "./pages/AddNotice";
 import {BrowserRouter, Routes, Route, NavLink} from 'react-router-dom';
 import GroupNotice from "./pages/GroupNotices";
+import AddGroupNotice from "./pages/AddGroupNotice";
 function App() {
 
   const [studentsNotices, setStudentNotice] = useState([
@@ -42,32 +43,47 @@ function App() {
     {
         groupName: "Buzdygan",
         people: ["Krzemień", "Waldo", "kilkutron"],
-        course: "Projekt zespołowy ",
+        course: "Projekt zespołowy",
         description: "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
     },
   ]);
+  const addGroupNotice = (newGroupNotice)=>{
+    setGroupNotice(groupNotices.concat([newGroupNotice]));
+  };
   const [query, setQuery] = useState("");
   const updateQuery = (event) =>{
     setQuery(event.target.value);
   };
+  const [dropdown, showDropdown]  = useState(false);
+  const onDropdownClick = ()=>{
+    showDropdown(!dropdown);
+  };
+
 
   return (
     <> 
     <BrowserRouter>
      
-        <nav className="navbar navbar-expand-lg navbar-light">
-          <ul className="navbar-nav">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+
+          <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <NavLink className="nav-link" to="/">Home</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/add">Dodaj nowe ogłoszenie</NavLink> 
+            </li>  
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/groupNotices">Znajdź ogłoszenia</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/search">Znajdź ogłoszenia</NavLink>
+              <NavLink className="nav-link" to="/addGroupNotice" > Nowa grupa projektowa </NavLink>
             </li>
           </ul>
-          <input value={query} onChange = {updateQuery} />
+     
+          <div>
+            <input className="form-control mr-sm-2 " value={query} onChange = {updateQuery} placeholder="Szukaj"/>
+          </div>
         </nav>
         <header>
       </header>
@@ -75,7 +91,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home students={studentsNotices} query={query} />} />
           <Route path="/add" element={<AddNotice addNewStudentNotice={addStudentNotice} />}/>
-          <Route path="/search" element={<GroupNotice groupNotices={groupNotices} query={query.toLowerCase()} />}/>
+          <Route path="/groupNotices" element={<GroupNotice groupNotices={groupNotices} query={query.toLowerCase()} />}/>
+          <Route path="/addGroupNotice" element={<AddGroupNotice addNewGroupNotice={addGroupNotice} />} />
         </Routes>
       
       </main>
