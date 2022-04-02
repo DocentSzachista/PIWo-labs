@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class GroupNotice extends React.Component {
     constructor(props){
@@ -26,7 +27,7 @@ class GroupNotice extends React.Component {
             return(
             <div className="col-sm-4 mt-4">
                 <div className="card" key={index}>
-                    <div className="card-header">Grupa: {iterator.groupName}</div>
+                    <div className="card-header">Grupa: {iterator.groupName} <Link to={`/sendMessage/${iterator.groupName}`}>Wyślij wiadomość</Link> </div>
                     <h5 className="card-title">Kurs: {iterator.course}</h5>
                     <p className="card-text">{iterator.description}</p>
                     <div className="card-footer">

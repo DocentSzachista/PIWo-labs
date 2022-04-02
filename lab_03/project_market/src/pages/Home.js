@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Home = (props) =>{
     const {students, query} = props;
     const generateTags = (tags) =>{
@@ -28,7 +29,10 @@ const Home = (props) =>{
         return (
         <div className="col-sm-4 mt-4">
             <div className="card" key={index}>
-                <div className="card-header">Ogłoszenie</div>
+                <div className="card-header d-flex justify-content-around">
+                    <span>Ogłoszenie</span>  
+                    <Link to={`/sendMessage/${iterator.email}`}>  Wyślij wiadomość  </Link> 
+                </div>
                 <h5 className="card-title">{iterator.firstname}</h5>
                 <p className="card-text">{iterator.description}</p>
                 <div className="d-flex justify-content-around">

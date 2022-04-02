@@ -4,6 +4,8 @@ import AddNotice from "./pages/AddNotice";
 import {BrowserRouter, Routes, Route, NavLink} from 'react-router-dom';
 import GroupNotice from "./pages/GroupNotices";
 import AddGroupNotice from "./pages/AddGroupNotice";
+import SendMessage from './pages/SendMessage';
+import Header from "./components/Header";
 function App() {
 
   const [studentsNotices, setStudentNotice] = useState([
@@ -54,51 +56,25 @@ function App() {
   const updateQuery = (event) =>{
     setQuery(event.target.value);
   };
-  const [dropdown, showDropdown]  = useState(false);
-  const onDropdownClick = ()=>{
-    showDropdown(!dropdown);
-  };
+
 
 
   return (
     <> 
     <BrowserRouter>
-     
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/">Home</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/add">Dodaj nowe ogłoszenie</NavLink> 
-            </li>  
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/groupNotices">Znajdź ogłoszenia</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/addGroupNotice" > Nowa grupa projektowa </NavLink>
-            </li>
-          </ul>
-     
-          <div>
-            <input className="form-control mr-sm-2 " value={query} onChange = {updateQuery} placeholder="Szukaj"/>
-          </div>
-        </nav>
-        <header>
-      </header>
+      <Header query = {query} updateQuery = {updateQuery} />
       <main>
         <Routes>
           <Route path="/" element={<Home students={studentsNotices} query={query} />} />
           <Route path="/add" element={<AddNotice addNewStudentNotice={addStudentNotice} />}/>
           <Route path="/groupNotices" element={<GroupNotice groupNotices={groupNotices} query={query.toLowerCase()} />}/>
           <Route path="/addGroupNotice" element={<AddGroupNotice addNewGroupNotice={addGroupNotice} />} />
+          <Route path="/sendMessage/:id" element= {<SendMessage />} />
         </Routes>
-      
       </main>
       </BrowserRouter>
       <footer>
-        
+        All rights reserved czy cos 
       </footer>
     </>
   );

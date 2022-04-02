@@ -32,7 +32,7 @@ const AddNotice = (props)=>{
                 <div className="form-container">
                     <div className="form-wrapper">
                         <h3 className="mb-5 content-center"> Dodaj nowe ogłoszenie </h3>
-                        <Form className>
+                        <Form >
                             <div className="row">
                                 <div className="col-md-6 mb-4">
                                     <div className="form-outline">
