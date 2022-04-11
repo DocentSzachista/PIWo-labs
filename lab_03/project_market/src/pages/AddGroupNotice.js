@@ -9,13 +9,15 @@ const AddGroupNotice = (props) =>{
         course: ""
       };
     const onSubmit = async values =>{
-
+        const ppl = values.people.trim().split(";");
+        const emails = values.emails.trim().split(" ");
         const dataToSet = {
             groupName: values.groupName,
             course: values.course,
             description: values.description,
-            people: values.people.trim().split(";"),
+            people: emails.map( (email, it) =>({email, name: ppl[it]} ) ),
         };
+        console.log(dataToSet);
         addNewGroupNotice(dataToSet);
         alert("Dodano nową grupę");
     };
@@ -53,8 +55,19 @@ const AddGroupNotice = (props) =>{
                                 <label className='full-row'> Imiona uczestników projektu (oddzielaj ich średnikiem) 
                                     <Field className="form-control form-control-lg" name="people" required />
                                 </label>
+
                              </div>
                             </div>
+                        </div>
+                        <div className='row'>
+                            <div className='col mb-4'>
+                                <div className='form-outline'>
+                                    <label className='full-row'> Emaile uczestników projektu (oddzielaj ich średnikiem) 
+                                        <Field className="form-control form-control-lg" name="emails" required />
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
                         <div className="form-group">
                                 <label className='full-row'> Opis 
