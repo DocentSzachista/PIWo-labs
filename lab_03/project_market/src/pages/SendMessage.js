@@ -1,21 +1,28 @@
 import { Formik, Form, Field } from "formik";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import Popup from "../components/Popup";
 
 const SendMessage = () => {
+    
+    const location = useLocation();
+    
     const [popup, setPopUp] = useState(false);
     const updatePopup = ()=>{
         setPopUp(!popup);
-        
     };
-    const parameter = useParams();
-    console.log(parameter);
+    
+    const dataObj = location.state || JSON.parse(localStorage.getItem("users"));
+    // const parameter = useParams();
     const onSubmit = async (values, {resetForm}) =>{
-        const dataToSend = {
-            param : parameter.id,
-            value : values.message 
-        };
+        dataObj.forEach( (element) => {
+            const dataToSend = {
+                param : element.email,
+                value : values.message 
+            };
+            //Simulate sending
+            console.log(dataToSend); 
+        });
         updatePopup();
         resetForm();
     };
@@ -29,6 +36,7 @@ const SendMessage = () => {
             errors.message = "Empty";
         return errors;
     };
+
     return(<>
         { popup && <Popup updatePopup={updatePopup}/>  }
         <div className="form-container">

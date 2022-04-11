@@ -1,11 +1,19 @@
 import { NavLink } from "react-router-dom";
 const Header = (props) => {
-    const {query, updateQuery} = props;
+    const {query, setQuery} = props;
+
+    const updateQuery = (event) =>{
+  
+      setQuery(event.target.value);
+    };
+    const resetQuery = ()=>{
+      setQuery("");
+    }
     return(
         <header>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
 
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav mr-auto" onClick={resetQuery}>
             <li className="nav-item">
               <NavLink className="nav-link" to="/">Home</NavLink>
             </li>

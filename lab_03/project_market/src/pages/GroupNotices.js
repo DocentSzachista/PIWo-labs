@@ -1,20 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import DeletePopup from "../components/DeletePopup";
 class GroupNotice extends React.Component {
+    
     constructor(props){
         super(props);
     }
+    
     createUsersHTML = (users) => {
         return users.map( (iterator, id) => {return (
             <span className=""  key={id}>
-                {`${iterator} `} 
+                {`${iterator.name} `} 
             </span>
          )}   );
      };
 
-
+     
+    
     render() {
+        // normally i would use useNavigate but it is not supported in class components, so there goes localStorage
+        // react classes sucks \_('_')_/
+        const navigation = (obj) =>{
+            localStorage.setItem("users", JSON.stringify(obj));
+        };
+        
         const {groupNotices, query} = this.props;
         const groupNoticesHTML = groupNotices.filter( (it) =>{
             return query ==="" 
@@ -27,19 +36,27 @@ class GroupNotice extends React.Component {
             return(
             <div className="col-sm-4 mt-4">
                 <div className="card" key={index}>
-                    <div className="card-header">Grupa: {iterator.groupName} <Link to={`/sendMessage/${iterator.groupName}`}>Wyślij wiadomość</Link> </div>
+                    <div className="card-header">Grupa: {iterator.groupName} <Link to={{
+                        pathname: `/sendGroupMessage/`
+                    }} onClick ={() => {navigation(iterator.people)}}>Wyślij wiadomość</Link>
+                    </div>
                     <h5 className="card-title">Kurs: {iterator.course}</h5>
                     <p className="card-text">{iterator.description}</p>
                     <div className="card-footer">
                         {`Uczestnicy:  `}
                         {this.createUsersHTML(iterator.people)}
+
+                        <div className="d-flex justify-content-between">
+                            <button className="btn btn-secondary">Edit </button>
+                            <Link className="btn btn-danger" to={`/groupNotices/delete/${index}`}>Delete</Link>
+                        </div>    
                     </div>
                 </div>
             </div>
             );
         });
-        console.log(groupNotices);
-        return (
+         // class components are real shit 
+        return (   
         <div className="card-group ">
             {groupNoticesHTML}
         </div>
