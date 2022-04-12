@@ -1,12 +1,16 @@
 import { useState } from "react";
-import Home from "./pages/Home";
-import AddNotice from "./pages/AddNotice";
-import {BrowserRouter, Routes, Route, NavLink} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+
 import GroupNotice from "./pages/GroupNotices";
-import AddGroupNotice from "./pages/AddGroupNotice";
+import AddGroupNotice from "./pages/CRUD/groupNotices/AddGroupNotice";
 import SendMessage from './pages/SendMessage';
 import Header from "./components/Header";
-import DeleteGroupNotices from "./pages/CRUD/DeleteGroupNotices";
+import Home from "./pages/Home";
+import AddNotice from "./pages/CRUD/notices/AddNotice";
+
+
+import DeleteGroupNotices from "./pages/CRUD/groupNotices/DeleteGroupNotices";
+import ModifyGroupNotices from "./pages/CRUD/groupNotices/ModifyGroupNotices";
 function App() {
 
   const [studentsNotices, setStudentNotice] = useState([
@@ -79,6 +83,7 @@ function App() {
           <Route path="/sendMessage" element= {<SendMessage />} />
           <Route path="/sendGroupMessage/" element= {<SendMessage />} />
           <Route path="/groupNotices/delete/:id" element ={<DeleteGroupNotices list={groupNotices} set={setGroupNotice}/>}/>
+          <Route path="/groupNotices/edit/:id" element={<ModifyGroupNotices list={groupNotices} setList={setGroupNotice} />} />
         </Routes>
       </main>
       </BrowserRouter>

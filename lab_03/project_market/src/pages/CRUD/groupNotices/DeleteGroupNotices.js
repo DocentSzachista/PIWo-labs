@@ -1,7 +1,7 @@
 import { Link, useParams  } from "react-router-dom";
 const DeleteGroupNotices = (props)=>{
     const {list, set} = props;
-    const id = useParams();
+    const id = parseInt(useParams().id);
 
     const onClickRemoveItem = ()=>{
         list.splice(id, 1); // temporary solution, when calls to api will 
@@ -17,7 +17,6 @@ const DeleteGroupNotices = (props)=>{
             <Link className="btn btn-secondary" to={`/groupNotices`}>Go back</Link>
             </div>
         </div>
-
     )
 }
 export default DeleteGroupNotices;

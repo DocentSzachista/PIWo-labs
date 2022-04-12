@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DeletePopup from "../components/DeletePopup";
+
 class GroupNotice extends React.Component {
     
     constructor(props){
@@ -47,7 +47,7 @@ class GroupNotice extends React.Component {
                         {this.createUsersHTML(iterator.people)}
 
                         <div className="d-flex justify-content-between">
-                            <button className="btn btn-secondary">Edit </button>
+                        <Link className="btn btn-secondary" to={`/groupNotices/edit/${index}`}>Edit </Link>
                             <Link className="btn btn-danger" to={`/groupNotices/delete/${index}`}>Delete</Link>
                         </div>    
                     </div>

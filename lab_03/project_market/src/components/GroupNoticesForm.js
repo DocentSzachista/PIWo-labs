@@ -1,37 +1,42 @@
-
-import {Form, Field, Formik} from 'formik';
-const AddGroupNotice = (props) =>{
-    const {addNewGroupNotice} = props;
-    const groupNotice = {
+import { Field, Formik, Form } from 'formik';
+const GroupNoticesForm = (props)=>{
+    const {element,  title,  isEdit, onSubmit} = props;
+    let initialValues = {
         people: "",
+        emails: "",
         description: "",
         groupName: "",
         course: ""
-      };
-    const onSubmit = async values =>{
-        const ppl = values.people.trim().split(";");
-        const emails = values.emails.trim().split(" ");
-        const dataToSet = {
-            groupName: values.groupName,
-            course: values.course,
-            description: values.description,
-            people: emails.map( (email, it) =>({email, name: ppl[it]} ) ),
-        };
-        console.log(dataToSet);
-        addNewGroupNotice(dataToSet);
-        alert("Dodano nową grupę");
     };
+    if (isEdit){
+        
+        let emails = "";
+        let people = "";
+        element.people.forEach( (element, _) =>{
+            emails += `${element.email} `;
+            people += `${element.name};`;
+        }  );
+        
+        initialValues = {
+            people: people,
+            emails: emails,
+            description: element.description,
+            groupName: element.groupName,
+            course: element.course
+        };
+        // console.log(initialValues);
+    }
     const validate = values =>{
         return {};
     };
 
+
     return(
-        <>
-            <Formik initialValues={groupNotice} validate={validate} onSubmit={onSubmit}>
+        <Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
                 
                 <div className="form-container">
                     <div className='form-wrapper'>
-                    <h3 className="mb-5 content-center"> Dodaj nową grupę projektową </h3>
+                    <h3 className="mb-5 content-center"> {title} </h3>
                     <Form >
                         <div className="row">
                             <div className="col-md-6 mb-4">
@@ -75,14 +80,15 @@ const AddGroupNotice = (props) =>{
                                 </label>
                             </div>
                         <div className='content-center'>
-                            <button className="btn  btn-success" type="submit">Dodaj nowe ogłoszenie </button>
+                            <button className="btn  btn-success" type="submit"> {title} </button>
                         </div>
                     </Form>
                     </div>
                 </div>
                 
-            </Formik>
-        </>
+        </Formik>
     );
+
+
 };
-export default AddGroupNotice;
+export default GroupNoticesForm;
