@@ -1,12 +1,12 @@
 import { Formik, Form, Field } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import Popup from "../components/Popup";
 
 const SendMessage = () => {
     
     const location = useLocation();
-    
+    const [img, setImg] = useState("");    
     const [popup, setPopUp] = useState(false);
     const updatePopup = ()=>{
         setPopUp(!popup);
@@ -36,6 +36,17 @@ const SendMessage = () => {
             errors.message = "Empty";
         return errors;
     };
+    const fetchImg = async () =>{
+        const res = await fetch("https://random-memer.herokuapp.com/", 
+            {mode: 'cors' }
+        );
+        const imgBlob = await res.blob();
+        const imgObjURL = URL.createObjectURL(imgBlob);
+        setImg(imgBlob);
+    };
+    useEffect(()=>{
+        fetchImg();
+    });
 
     return(<>
         { popup && <Popup updatePopup={updatePopup}/>  }
@@ -57,6 +68,7 @@ const SendMessage = () => {
         </Formik>
             </div>
         </div>
+        <img src={img} alt="icons" width="250px" height="100px"/>
     </>);
 };
 export default SendMessage;

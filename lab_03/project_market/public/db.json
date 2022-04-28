@@ -1,0 +1,48 @@
+{
+ "notices":   [
+    {
+      "name": "Jan Kowalski",
+      "email": "jan.kowalski@gmail.com",
+      "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
+      "tags": ["front-end", "back-end"],
+      "courses": ["Projekt zespołowy", "Projektowanie interfejsów webowych"]
+    },
+    {
+      "name": "Jan Wolski",
+      "email": "jan.wolski@gmail.com",
+      "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
+      "tags": ["front-end", "back-end", "database"],
+      "courses": ["Bazy danych 2", "Projektowanie interfejsów webowych"]
+    },
+    {
+      "name": "Jutland",
+      "email": "jutland@gmail.com",
+      "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
+      "tags": ["sieci komputerowe", "cisco", "#niechcemisie"],
+      "courses": ["Sieci komputerowe", "kurs od 0 do projektowania sieci"]
+    }
+  ],
+  "groupNotices": [
+    {
+        "groupName": "Wojownicy",
+        "people": [
+                  { "name": "Zbychu", "email": "dupa@gmail.com"}, 
+                  { "name":"Krzesiwo", "email": "krzak@gmail.com"},
+                  { "name":"Warzone", "email": "kitku@gmail.com"}
+                ],
+        "course": "Magiczne zwierzaki",
+        "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. "
+        
+    },
+    {
+        "groupName": "Buzdygan",
+        "people": [
+                  { "name": "Krzemień", "email": "dupa@gmail.com"}, 
+                  { "name": "Waldo", "email": "waldo@gmail.com"},
+                  { "name": "kilkutron", "email": "dupa@gmail.com"}
+                ],
+        "course": "Projekt zespołowy",
+        "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. "
+    }
+  ]
+}
