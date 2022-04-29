@@ -45,7 +45,7 @@ const SendMessage = () => {
         setImg(imgBlob);
     };
     useEffect(()=>{
-        fetchImg();
+        // fetchImg();
     });
 
     return(<>

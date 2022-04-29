@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DeletePopup from "../components/DeletePopup";
-const Home = (props) =>{
+const StudentNotices = (props) =>{
     const [popup, showPopup] = useState(false);
     const [index, setIndex] = useState(null);
     const {students, setStudentNotice , query} = props;
     const navigate = useNavigate();
     const toComponent = (obj)=>{
-        navigate('/sendMessage',
+        navigate('sendMessage',
         {
             state: [ {email: obj.email, name: obj.name}
                     ]
@@ -40,15 +40,19 @@ const Home = (props) =>{
         return (
         <div className="col-sm-4 mt-4">
             <div className="card" key={index}>
+            {/* <img className="card-img-top" src="..." alt="Card image cap"/> */}
+                
                 <div className="card-header d-flex justify-content-around">
                     <span>Ogłoszenie</span>  
                     <a onClick={ () => {toComponent(iterator) }}>
-                      Wyślij wiadomość  </a>
+                    Wyślij wiadomość  </a>
                 </div>
-                <h5 className="card-title">{iterator.name}</h5>
-                <p className="card-text">{iterator.description}</p>
-                <div className="d-flex justify-content-around">
-                    { generateTags(iterator.tags) }
+                <div className="card-body">
+                    <h5 className="card-title">{iterator.name}</h5>
+                    <p className="card-text">{iterator.description}</p>
+                    <div className="d-flex justify-content-around">
+                        { generateTags(iterator.tags) }
+                    </div>
                 </div>
                 <div className="card-footer">
                     { generateCourses(iterator.courses)}
@@ -57,6 +61,7 @@ const Home = (props) =>{
                         <button className="btn btn-danger" onClick={()=>{showPopup(true); setIndex(index)}}>Delete</button>
                     </div>
                 </div>
+                
             </div>
         </div>
         );
@@ -76,4 +81,4 @@ const Home = (props) =>{
     );
 
 }
-export default Home;
+export default StudentNotices;

@@ -1,55 +1,40 @@
-import { useEffect, useState } from "react";
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-
-import GroupNotice from "./pages/GroupNotices";
-import AddGroupNotice from "./pages/CRUD/groupNotices/AddGroupNotice";
-import SendMessage from './pages/SendMessage';
-import Header from "./components/Header";
-import Home from "./pages/Home";
+import {useState, useMemo } from "react";
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 
 
-import AddNotice from "./pages/CRUD/notices/AddNotice";
-import DeleteGroupNotices from "./pages/CRUD/groupNotices/DeleteGroupNotices";
-import ModifyGroupNotices from "./pages/CRUD/groupNotices/ModifyGroupNotices";
 
-import fetchData from "./api/fetchData";
+import Login from "./pages/Authentication/Login";
+
+import Register from "./pages/Authentication/Register";
+import HomePage from "./pages/HomePage";
+import { UserContext } from "./context/Context";
+import { useLocalStorage } from "./UseLocalStorage";
 
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [userStorage, setUserStorage] = useLocalStorage("user", null);
 
-  const [studentsNotices, setStudentNotice] = useState([]);
-  const addStudentNotice = (newStudentNotice) =>{
-    setStudentNotice(studentsNotices.concat([newStudentNotice]));
-  }
-  const [groupNotices, setGroupNotice] = useState([]);
-  const addGroupNotice = (newGroupNotice)=>{
-    setGroupNotice(groupNotices.concat([newGroupNotice]));
+  const addUserToStorages = (value) =>{
+          setUser(value);
+          setUserStorage(value);
   };
-  const [query, setQuery] = useState("");
- 
-  useEffect(  ()=>{
-     fetchData().then( (data) => { 
-       setStudentNotice(data.notices);
-       setGroupNotice(data.groupNotices);
-    });
-  }, []);
 
-
+  const value = useMemo( () => ({user, addUserToStorages} ), [user, addUserToStorages]);
   return (
     <> 
     <BrowserRouter>
-      <Header query = {query} setQuery = {setQuery} />
+      
       <main>
+      <UserContext.Provider value={value}>
         <Routes>
-          <Route path="/" element={<Home students={studentsNotices} setStudentNotice={setStudentNotice} query={query} />} />
-          <Route path="/add" element={<AddNotice addNewStudentNotice={addStudentNotice} />}/>
-          <Route path="/groupNotices" element={<GroupNotice groupNotices={groupNotices} query={query.toLowerCase()} />}/>
-          <Route path="/addGroupNotice" element={<AddGroupNotice addNewGroupNotice={addGroupNotice} />} />
-          <Route path="/sendMessage" element= {<SendMessage />} />
-          <Route path="/sendGroupMessage/" element= {<SendMessage />} />
-          <Route path="/groupNotices/delete/:id" element ={<DeleteGroupNotices list={groupNotices} set={setGroupNotice}/>}/>
-          <Route path="/groupNotices/edit/:id" element={<ModifyGroupNotices list={groupNotices} setList={setGroupNotice} />} />
+          <Route path="/" element={ userStorage !== null 
+                                                ? <Navigate to="/home"/>  
+                                                : <Login/>}/> 
+          <Route path="/register" element={ userStorage !==null ? <Navigate to="/home"/> : <Register />} />
+          <Route path="/home/*" element={ userStorage !== null ?  <HomePage /> : <Navigate to="/" /> } />
         </Routes>
+      </UserContext.Provider>
       </main>
       </BrowserRouter>
       <footer>

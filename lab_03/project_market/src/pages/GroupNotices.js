@@ -47,8 +47,8 @@ class GroupNotice extends React.Component {
                         {this.createUsersHTML(iterator.people)}
 
                         <div className="d-flex justify-content-between">
-                        <Link className="btn btn-secondary" to={`/groupNotices/edit/${index}`}>Edit </Link>
-                            <Link className="btn btn-danger" to={`/groupNotices/delete/${index}`}>Delete</Link>
+                        <Link className="btn btn-secondary" to={`edit/${index}`}>Edit </Link>
+                            <Link className="btn btn-danger" to={`delete/${index}`}>Delete</Link>
                         </div>    
                     </div>
                 </div>

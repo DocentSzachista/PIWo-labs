@@ -1,6 +1,7 @@
 {
  "notices":   [
     {
+      "id" : 1,
       "name": "Jan Kowalski",
       "email": "jan.kowalski@gmail.com",
       "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
@@ -8,6 +9,7 @@
       "courses": ["Projekt zespołowy", "Projektowanie interfejsów webowych"]
     },
     {
+      "id" : 2,
       "name": "Jan Wolski",
       "email": "jan.wolski@gmail.com",
       "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
@@ -15,6 +17,7 @@
       "courses": ["Bazy danych 2", "Projektowanie interfejsów webowych"]
     },
     {
+      "id" : 3,
       "name": "Jutland",
       "email": "jutland@gmail.com",
       "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
@@ -24,6 +27,7 @@
   ],
   "groupNotices": [
     {
+        "id" : 1,
         "groupName": "Wojownicy",
         "people": [
                   { "name": "Zbychu", "email": "dupa@gmail.com"}, 
@@ -34,7 +38,8 @@
         "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. "
         
     },
-    {
+    {   
+        "id" : 2,
         "groupName": "Buzdygan",
         "people": [
                   { "name": "Krzemień", "email": "dupa@gmail.com"}, 

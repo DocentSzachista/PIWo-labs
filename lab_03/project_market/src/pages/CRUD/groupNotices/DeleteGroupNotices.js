@@ -13,8 +13,8 @@ const DeleteGroupNotices = (props)=>{
         <div className="popup-box">
         <div className="box">
             <h1> Czy chcesz usunąć wpis?</h1>
-            <Link className="btn btn-danger"    to={`/groupNotices`} onClick={onClickRemoveItem}> Delete </Link>
-            <Link className="btn btn-secondary" to={`/groupNotices`}>Go back</Link>
+            <Link className="btn btn-danger"    to={`/home/groupNotices`} onClick={onClickRemoveItem}> Delete </Link>
+            <Link className="btn btn-secondary" to={`/home/groupNotices`}>Go back</Link>
             </div>
         </div>
     )
