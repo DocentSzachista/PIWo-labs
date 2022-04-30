@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { addToBasket } from "../basket/actions";
+import Cart from "../assets/cart.svg";
+import "../styles/cart.css";
 class GroupNotice extends React.Component {
     
     constructor(props){
@@ -24,7 +26,7 @@ class GroupNotice extends React.Component {
             localStorage.setItem("users", JSON.stringify(obj));
         };
         
-        const {groupNotices, query} = this.props;
+        const {groupNotices, query, dispatch} = this.props;
         const groupNoticesHTML = groupNotices.filter( (it) =>{
             return query ==="" 
                     || it.groupName.toLowerCase().includes(query)
@@ -37,8 +39,9 @@ class GroupNotice extends React.Component {
             <div className="col-sm-4 mt-4">
                 <div className="card" key={index}>
                     <div className="card-header">Grupa: {iterator.groupName} <Link to={{
-                        pathname: `/sendGroupMessage/`
+                        pathname: `sendGroupMessage`
                     }} onClick ={() => {navigation(iterator.people)}}>Wyślij wiadomość</Link>
+                    <img src={Cart} className="bg-image hover-zoom cart" onClick={() =>{dispatch(addToBasket(iterator)); }}/>
                     </div>
                     <h5 className="card-title">Kurs: {iterator.course}</h5>
                     <p className="card-text">{iterator.description}</p>

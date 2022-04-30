@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeletePopup from "../components/DeletePopup";
+import { addToBasket } from "../basket/actions";
+import Cart from "../assets/cart.svg";
+import "../styles/cart.css";
 const StudentNotices = (props) =>{
     const [popup, showPopup] = useState(false);
     const [index, setIndex] = useState(null);
-    const {students, setStudentNotice , query} = props;
+    const {students, setStudentNotice , query, dispatch} = props;
     const navigate = useNavigate();
+
     const toComponent = (obj)=>{
         navigate('sendMessage',
         {
@@ -32,8 +36,8 @@ const StudentNotices = (props) =>{
         );
     }
     const generateStudentsListHTML = students.filter((it) => {
-        return query === "" || it.name.includes(query) 
-                || it.description.includes(query) 
+        return query === "" || it.name.toLowerCase().includes(query) 
+                || it.description.toLowerCase().includes(query) 
                 || it.tags.join(" ").toLowerCase().includes(query)
                 || it.courses.join(" ").toLowerCase().includes(query);
     }).map((iterator, index) =>{
@@ -44,8 +48,9 @@ const StudentNotices = (props) =>{
                 
                 <div className="card-header d-flex justify-content-around">
                     <span>Ogłoszenie</span>  
-                    <a onClick={ () => {toComponent(iterator) }}>
+                    <a className="cart" onClick={ () => {toComponent(iterator) }}>
                     Wyślij wiadomość  </a>
+                    <img src={Cart} className="bg-image hover-zoom cart" onClick={() =>{dispatch(addToBasket(iterator)); }}/>
                 </div>
                 <div className="card-body">
                     <h5 className="card-title">{iterator.name}</h5>

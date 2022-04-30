@@ -4,7 +4,7 @@
       "id" : 1,
       "name": "Jan Kowalski",
       "email": "jan.kowalski@gmail.com",
-      "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
+      "description": "Lorem ipsum ndon lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
       "tags": ["front-end", "back-end"],
       "courses": ["Projekt zespołowy", "Projektowanie interfejsów webowych"]
     },
@@ -12,7 +12,7 @@
       "id" : 2,
       "name": "Jan Wolski",
       "email": "jan.wolski@gmail.com",
-      "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
+      "description": "Lorem ipsum nxon lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
       "tags": ["front-end", "back-end", "database"],
       "courses": ["Bazy danych 2", "Projektowanie interfejsów webowych"]
     },
@@ -20,7 +20,7 @@
       "id" : 3,
       "name": "Jutland",
       "email": "jutland@gmail.com",
-      "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
+      "description": "Lorem ipsum nzon lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. ",
       "tags": ["sieci komputerowe", "cisco", "#niechcemisie"],
       "courses": ["Sieci komputerowe", "kurs od 0 do projektowania sieci"]
     }
@@ -35,7 +35,7 @@
                   { "name":"Warzone", "email": "kitku@gmail.com"}
                 ],
         "course": "Magiczne zwierzaki",
-        "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. "
+        "description": "Lorem ipsumc non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. "
         
     },
     {   
@@ -47,7 +47,7 @@
                   { "name": "kilkutron", "email": "dupa@gmail.com"}
                 ],
         "course": "Projekt zespołowy",
-        "description": "Lorem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. "
+        "description": "Lorsem ipsum non lectus tincidunt. Etiam dictum ligula sed arcu mollis fringilla. "
     }
   ]
 }

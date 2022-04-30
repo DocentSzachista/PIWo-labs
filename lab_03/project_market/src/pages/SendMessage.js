@@ -47,7 +47,7 @@ const SendMessage = () => {
     useEffect(()=>{
         // fetchImg();
     });
-
+    console.log("DEbug");
     return(<>
         { popup && <Popup updatePopup={updatePopup}/>  }
         <div className="form-container">
@@ -58,7 +58,7 @@ const SendMessage = () => {
             <Form >
             <div className="form-group">
                 <label className="full-row"> Opis 
-                    <Field className="form-control form-control-lg" name="message" as="textarea" rows='3' required />
+                    <Field autoFocus className="form-control form-control-lg" name="message" as="textarea" rows='3' required />
                 </label>
             </div>
             <div className="content-center">
@@ -68,7 +68,7 @@ const SendMessage = () => {
         </Formik>
             </div>
         </div>
-        <img src={img} alt="icons" width="250px" height="100px"/>
+        {/* <img src={img} alt="icons" width="250px" height="100px"/> */}
     </>);
 };
 export default SendMessage;

@@ -33,6 +33,9 @@ const Header = (props) => {
               <NavLink className="nav-link" to="addGroupNotice" > Nowa grupa projektowa </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink className="nav-link" to="basket" > Koszyk </NavLink>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link" to="/" onClick={logOut} > Wyloguj </Link>
             </li>
           </ul>

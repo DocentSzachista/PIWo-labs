@@ -1,8 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useReducer } from "react";
 
-
-
+import { basketReducer, initialState } from "../basket/reducer";
 import { UserContext } from "../context/Context";
 import fetchData from "../api/fetchData";
 
@@ -14,8 +13,13 @@ import StudentNotices from "./StudentNotices";
 import AddNotice from "./CRUD/notices/AddNotice";
 import DeleteGroupNotices from "./CRUD/groupNotices/DeleteGroupNotices";
 import ModifyGroupNotices from "./CRUD/groupNotices/ModifyGroupNotices";
+import Basket from "./Basket";
 
 const HomePage = () =>{
+
+    const [basket, dispatch] = useReducer(basketReducer,initialState );
+
+
     const {user} = useContext(UserContext);
     console.log(user);
 
@@ -31,23 +35,26 @@ const HomePage = () =>{
    
     useEffect(  ()=>{
        fetchData().then( (data) => { 
-         setStudentNotice(data.notices);
-         setGroupNotice(data.groupNotices);
+          setStudentNotice(data.notices);
+          setGroupNotice(data.groupNotices);
       });
-    }, []);
+    }, [setGroupNotice, setStudentNotice]);
   
 
     return(<>
         <Header query = {query} setQuery = {setQuery} />
         <Routes>
-          <Route path="/" element={<StudentNotices students={studentsNotices} setStudentNotice={setStudentNotice} query={query} />} />
+          <Route path="/" element={<StudentNotices students={studentsNotices} setStudentNotice={setStudentNotice} query={query.toLowerCase()}  dispatch = {dispatch} />} />
           <Route path="add" element={<AddNotice addNewStudentNotice={addStudentNotice} />}/>
-          <Route path="groupNotices" element={<GroupNotice groupNotices={groupNotices} query={query.toLowerCase()} />}/>
+          
           <Route path="addGroupNotice" element={<AddGroupNotice addNewGroupNotice={addGroupNotice} />} />
           <Route path="sendMessage" element= {<SendMessage />} />
-          <Route path="sendGroupMessage/" element= {<SendMessage />} />
+
+          <Route path="groupNotices" element={<GroupNotice groupNotices={groupNotices} query={query.toLowerCase()} dispatch = {dispatch}/>}/>
+          <Route path="groupNotices/sendGroupMessage" element= {<SendMessage />} />
           <Route path="groupNotices/delete/:id" element ={<DeleteGroupNotices list={groupNotices} set={setGroupNotice}/>}/>
           <Route path="groupNotices/edit/:id" element={<ModifyGroupNotices list={groupNotices} setList={setGroupNotice} />} />
+          <Route path="basket" element={<Basket basket = {basket} dispatch = {dispatch} />}/>
         </Routes>
 
         </>
