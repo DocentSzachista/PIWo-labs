@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DeletePopup from "../components/DeletePopup";
 import { addToBasket } from "../basket/actions";
 import Cart from "../assets/cart.svg";
 import "../styles/cart.css";
+import { fetchData } from "../api/fetchData";
 const StudentNotices = (props) =>{
     const [popup, showPopup] = useState(false);
     const [index, setIndex] = useState(null);
@@ -18,6 +19,10 @@ const StudentNotices = (props) =>{
         } 
         );
     };
+
+    useEffect(() => {
+    });
+
     const generateTags = (tags) =>{
         return tags.map( (iterator, id) =>{
             return (
@@ -44,13 +49,14 @@ const StudentNotices = (props) =>{
         return (
         <div className="col-sm-4 mt-4">
             <div className="card" key={index}>
-            {/* <img className="card-img-top" src="..." alt="Card image cap"/> */}
-                
+                <img className="bg-image profile-img" src={iterator.img} alt="random-img" />             
                 <div className="card-header d-flex justify-content-around">
+
                     <span>Ogłoszenie</span>  
                     <a className="cart" onClick={ () => {toComponent(iterator) }}>
                     Wyślij wiadomość  </a>
                     <img src={Cart} className="bg-image hover-zoom cart" onClick={() =>{dispatch(addToBasket(iterator)); }}/>
+
                 </div>
                 <div className="card-body">
                     <h5 className="card-title">{iterator.name}</h5>
@@ -66,6 +72,7 @@ const StudentNotices = (props) =>{
                         <button className="btn btn-danger" onClick={()=>{showPopup(true); setIndex(index)}}>Delete</button>
                     </div>
                 </div>
+
                 
             </div>
         </div>

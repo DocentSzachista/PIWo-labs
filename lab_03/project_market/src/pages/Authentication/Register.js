@@ -2,7 +2,7 @@ import {Form, Field, Formik} from 'formik';
 import { Link } from 'react-router-dom';
 import { registerUser } from '../../api/fetchData';
 const Register = () =>{
-
+    registerUser({"login": "Dupa", "password": "dupaupa"});
     const initial = {
         "login" : "",
         "password": "",

@@ -1,17 +1,35 @@
 
-const fetchData = ()=>{
-    return fetch(
-        'db.json',
-        {
-            headers :{
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            }
-        }
-    ).then((response) =>{
-        return response.json();
+import axios from 'axios';
+export const fetchData =(url) =>{
+
+    return axios.get(url)
+    .then( (response) =>{
+        return response.data;
     });
 };
+export const fetchImage = (url) =>{
+    console.log ( axios.get(url).then( (response) => {
+        return response.data;
+    }) );
+}
+
+
+// export const fetchData = (url)=>{
+//     return fetch(
+//         url,
+//         {
+//             headers :{
+//                 'Access-Control-Allow-Origin': '*',
+//                 //'Content-type': 'application/json',
+//                 //'Accept': 'application/json'
+//             }
+//         }
+//     ).then((response) =>{
+//         return response.json();
+//     }).then ((data) => {
+//         return data;
+//     });
+// };
 
 // normally data is sent to server and it sends response with JWT or other authetication token,
 // here it will be simulated though we dont have any API in first place
@@ -35,18 +53,23 @@ export const  loginUser = async (credentials) =>{
 
 export const registerUser = async (credentials) =>{
     const data = {
-        "login"   : credentials.login,
-        "password": credentials.password
+         "login"   : credentials.login,
+         "password": credentials.password
     };
-    return await fetch('users.json',
+    const file = await fetch("users.json",
         {
-            method: "POST",
-            body: JSON.stringify(credentials),
             headers: {"Content-type": "application/json"}
-        } 
-    ).then((response) =>{
+        }
+    ).then((response) => {
         return response.json()
+    }).then((data) =>{
+        return data
     });
+    
+    file.push(data);
 };
 
-export default fetchData;
+
+
+
+// export default fetchData;

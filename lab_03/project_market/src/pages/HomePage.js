@@ -3,8 +3,8 @@ import { useContext, useEffect, useState, useReducer } from "react";
 
 import { basketReducer, initialState } from "../basket/reducer";
 import { UserContext } from "../context/Context";
-import fetchData from "../api/fetchData";
-
+import { fetchData} from "../api/fetchData";
+import { fetchImage } from "../api/fetchData";
 import GroupNotice from "./GroupNotices";
 import AddGroupNotice from "./CRUD/groupNotices/AddGroupNotice";
 import SendMessage from './SendMessage';
@@ -34,10 +34,11 @@ const HomePage = () =>{
     const [query, setQuery] = useState("");
    
     useEffect(  ()=>{
-       fetchData().then( (data) => { 
+       fetchData('db.json').then( (data) => { 
           setStudentNotice(data.notices);
           setGroupNotice(data.groupNotices);
       });
+      fetchImage("https://picsum.photos/70/100");
     }, [setGroupNotice, setStudentNotice]);
   
 
