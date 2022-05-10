@@ -1,5 +1,6 @@
 import {Form, Field, Formik} from 'formik';
 import "../../../styles/form.css";
+import { fetchImage } from '../../../api/fetchData';
 const AddNotice = (props)=>{
     const {addNewStudentNotice} = props;
     const studentNotice = {
@@ -10,13 +11,14 @@ const AddNotice = (props)=>{
         courses: ""
       };
     const onSubmit = async values =>{
-
+        const image =await fetchImage("https://picsum.photos/70/100");
         const dataToSet = {
             firstname: values.firstname,
             email: values.email,
             description: values.description,
             tags: values.tags.trim().split(" "),
-            courses: values.courses.trim().split(";")
+            courses: values.courses.trim().split(";"),
+            img: image
         };
         addNewStudentNotice(dataToSet);
         alert("Dodano nowe ogłoszenie");

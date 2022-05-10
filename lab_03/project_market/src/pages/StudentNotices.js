@@ -45,11 +45,11 @@ const StudentNotices = (props) =>{
                 || it.description.toLowerCase().includes(query) 
                 || it.tags.join(" ").toLowerCase().includes(query)
                 || it.courses.join(" ").toLowerCase().includes(query);
-    }).map((iterator, index) =>{
+    }).map( (iterator, index) =>{
         return (
         <div className="col-sm-4 mt-4">
             <div className="card" key={index}>
-                <img className="bg-image profile-img" src={iterator.img} alt="random-img" />             
+                <img className="bg-image profile-img" src={ iterator.img} alt="random-img" />             
                 <div className="card-header d-flex justify-content-around">
 
                     <span>Ogłoszenie</span>  

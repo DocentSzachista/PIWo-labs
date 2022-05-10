@@ -1,35 +1,43 @@
 
-import axios from 'axios';
-export const fetchData =(url) =>{
+// import axios from 'axios';
+// export const fetchData =(url) =>{
 
-    return axios.get(url)
-    .then( (response) =>{
-        return response.data;
-    });
-};
-export const fetchImage = (url) =>{
-    console.log ( axios.get(url).then( (response) => {
-        return response.data;
-    }) );
+//     return axios.get(url)
+//     .then( (response) =>{
+//         return response.data;
+//     });
+// };
+// export const fetchImage = (url) =>{
+//     console.log ( axios.get(url).then( (response) => {
+//         return response.data;
+//     }) );
+// }
+
+export const fetchImage = async (url) =>{
+
+    const data = await fetch( url);
+    return data.url;
 }
 
 
-// export const fetchData = (url)=>{
-//     return fetch(
-//         url,
-//         {
-//             headers :{
-//                 'Access-Control-Allow-Origin': '*',
-//                 //'Content-type': 'application/json',
-//                 //'Accept': 'application/json'
-//             }
-//         }
-//     ).then((response) =>{
-//         return response.json();
-//     }).then ((data) => {
-//         return data;
-//     });
-// };
+export const fetchData = (url)=>{
+    
+    return fetch(
+        url,
+        {
+            headers :{
+                // 'Access-Control-Allow-Origin': '*',
+                //'Content-type': 'application/json',
+                //'Accept': 'application/json'
+            }
+        }
+    ).then((response) =>{
+        return response.json();
+    }).then ((data) => {
+        return data;
+    });
+    
+};
 
 // normally data is sent to server and it sends response with JWT or other authetication token,
 // here it will be simulated though we dont have any API in first place

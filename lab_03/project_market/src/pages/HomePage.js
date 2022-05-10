@@ -4,7 +4,6 @@ import { useContext, useEffect, useState, useReducer } from "react";
 import { basketReducer, initialState } from "../basket/reducer";
 import { UserContext } from "../context/Context";
 import { fetchData} from "../api/fetchData";
-import { fetchImage } from "../api/fetchData";
 import GroupNotice from "./GroupNotices";
 import AddGroupNotice from "./CRUD/groupNotices/AddGroupNotice";
 import SendMessage from './SendMessage';
@@ -18,7 +17,7 @@ import Basket from "./Basket";
 const HomePage = () =>{
 
     const [basket, dispatch] = useReducer(basketReducer,initialState );
-
+    
 
     const {user} = useContext(UserContext);
     console.log(user);
@@ -32,13 +31,12 @@ const HomePage = () =>{
       setGroupNotice(groupNotices.concat([newGroupNotice]));
     };
     const [query, setQuery] = useState("");
-   
+    console.log(studentsNotices);
     useEffect(  ()=>{
        fetchData('db.json').then( (data) => { 
           setStudentNotice(data.notices);
           setGroupNotice(data.groupNotices);
       });
-      fetchImage("https://picsum.photos/70/100");
     }, [setGroupNotice, setStudentNotice]);
   
 
