@@ -1,7 +1,13 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, Navigate, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/Context";
+import { logout } from "../firebase/users";
+import { auth } from "../firebase/init";
+import { useAuthState } from "react-firebase-hooks/auth";
 const Header = (props) => {
+
+    const {navigate} = useNavigate();
+    const [user] = useAuthState(auth);
     const {query, setQuery} = props;
     const {addUserToStorages} = useContext(UserContext);
     const updateQuery = (event) =>{
@@ -12,13 +18,14 @@ const Header = (props) => {
       setQuery("");
     }
     const logOut = () =>{
+      logout();
       addUserToStorages(null);
-      window.location.reload();
+      navigate("/");
     }
     return(
         <header>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-
+          { user &&   <NavLink className="navbar-brand" to="user">Siema {user.displayName}</NavLink> ||  <></> }
           <ul className="navbar-nav mr-auto" onClick={resetQuery}>
             <li className="nav-item">
               <NavLink className="nav-link" to="">Home</NavLink>

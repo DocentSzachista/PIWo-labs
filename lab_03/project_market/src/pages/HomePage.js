@@ -13,10 +13,15 @@ import AddNotice from "./CRUD/notices/AddNotice";
 import DeleteGroupNotices from "./CRUD/groupNotices/DeleteGroupNotices";
 import ModifyGroupNotices from "./CRUD/groupNotices/ModifyGroupNotices";
 import Basket from "./Basket";
+import UserInfo  from "./user/UserInformation.js";
+import { auth } from "../firebase/init";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const HomePage = () =>{
 
+    const [user_log] = useAuthState(auth);
     const [basket, dispatch] = useReducer(basketReducer,initialState );
+    
     
 
     const {user} = useContext(UserContext);
@@ -45,7 +50,7 @@ const HomePage = () =>{
         <Routes>
           <Route path="/" element={<StudentNotices students={studentsNotices} setStudentNotice={setStudentNotice} query={query.toLowerCase()}  dispatch = {dispatch} />} />
           <Route path="add" element={<AddNotice addNewStudentNotice={addStudentNotice} />}/>
-          
+          <Route path="user" element={<UserInfo />} />
           <Route path="addGroupNotice" element={<AddGroupNotice addNewGroupNotice={addGroupNotice} />} />
           <Route path="sendMessage" element= {<SendMessage />} />
 
@@ -55,7 +60,7 @@ const HomePage = () =>{
           <Route path="groupNotices/edit/:id" element={<ModifyGroupNotices list={groupNotices} setList={setGroupNotice} />} />
           <Route path="basket" element={<Basket basket = {basket} dispatch = {dispatch} />}/>
         </Routes>
-
+        {/* {user_log && <button onClick={logout}>Wyloguj {user_log.displayName}</button> || <Navigate to="/" />} */}
         </>
     );
 

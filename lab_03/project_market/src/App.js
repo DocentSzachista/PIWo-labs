@@ -10,10 +10,12 @@ import HomePage from "./pages/HomePage";
 import { UserContext } from "./context/Context";
 import { useLocalStorage } from "./UseLocalStorage";
 
-
+import { auth } from "./firebase/init";
+import { useAuthState } from "react-firebase-hooks/auth";
 function App() {
   const [user, setUser] = useState(null);
   const [userStorage, setUserStorage] = useLocalStorage("user", null);
+
 
   const addUserToStorages = (value) =>{
           setUser(value);
@@ -28,6 +30,8 @@ function App() {
       <main>
       <UserContext.Provider value={value}>
         <Routes>
+          {/* Jeżeli uzytkownik jest to wywolaj buttona a inaczej zrob przekierowanie */}
+          
           <Route path="/" element={ userStorage !== null 
                                                 ? <Navigate to="/home"/>  
                                                 : <Login/>}/> 

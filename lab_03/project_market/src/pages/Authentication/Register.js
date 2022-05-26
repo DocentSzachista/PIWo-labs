@@ -1,13 +1,17 @@
 import {Form, Field, Formik} from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from '../../api/fetchData';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../../firebase/init';
+import { singup } from '../../firebase/users';
 const Register = () =>{
     registerUser({"login": "Dupa", "password": "dupaupa"});
     const initial = {
-        "login" : "",
+        "email" : "",
         "password": "",
         "passwordCheck": ""
     }; 
+    const navigate = useNavigate();
     const validate = values => {
         let errors = {};
         if( !values.login ) {
@@ -23,13 +27,15 @@ const Register = () =>{
         return {};
     };
     const onSubmit = async values =>{
-        const user=  await registerUser(values);
-        if(!user){
-            alert("Rejestracja się nie powiodła");
+        // const user=  await registerUser(values);
+        if( singup(values.email, values.password)){
+            await alert("Konto stworzono z sukcesem");
+            navigate("/");
         }
-        else{
-            alert("Rejestracja się udała ")
+        else {
+            alert("Nie udało się stworzyć konta");
         }
+
     };
 
     return(
@@ -43,8 +49,8 @@ const Register = () =>{
                             <div className="row">
                                 
                                 <div className="form-outline">
-                                    <label > Login
-                                        <Field className="form-control form-control-lg" name="login" type="input" required />
+                                    <label > Email
+                                        <Field className="form-control form-control-lg" name="email" type="email" required />
                                     </label>
                                 </div>
                             </div>
@@ -66,6 +72,9 @@ const Register = () =>{
                             <div className="content-center">
                                 <button className="btn  btn-success" type="submit"> Zarejestruj się </button>
                             </div>
+                            <div className='text-center fs-6' >
+                                Nie masz konta? <Link to="/" > Zaloguj sie </Link>
+                            </div> 
                         </Form>
                     </div>
                 </div>

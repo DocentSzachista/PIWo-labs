@@ -54,7 +54,7 @@ export const  loginUser = async (credentials) =>{
     ).then((response) => {
         return response.json();
     });
-    let user = data.filter( (it) => { return it.login === credentials.login && 
+    let user = data.filter( (it) => { return it.email === credentials.email && 
                                             credentials.password === it.password });
     return user[0];
 };
