@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {  loginUser } from '../../api/fetchData';
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../../context/Context';
-import { logInWithGoogle } from '../../firebase/users';
+import { logInWithGoogle, logInWithEmailAndPwd } from '../../firebase/users';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from '../../firebase/init';
 import { useState } from 'react';
@@ -30,20 +30,9 @@ const Login = () =>{
         return errors;
     };
     const onSubmit = async() =>{
-        console.log({"s":email, "p":pwd });
-        const response=  await loginUser({
-                "email": email, 
-                "password": pwd
-            });
-        if(!response){
-            alert("Logowanie się nie powiodło");
+        if(!logInWithEmailAndPwd(email, pwd)) {
+            alert("Nie powiodło się logowanie");
         }
-        else{
-            await addUserToStorages(response);
-            navigate("/home");
-        }
-        // console.log(users.filter( (it) => { return it.login === values.login  }));
-        console.log(user);
     };
     useEffect(() => {
         if (loading)

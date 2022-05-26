@@ -1,12 +1,11 @@
 import { auth, firestore } from "./init";
-import { 
-    createUserWithEmailAndPassword,
-    updateProfile  
-} from "firebase/auth";
 import {
     GoogleAuthProvider,
     signInWithPopup,
     signOut,
+    createUserWithEmailAndPassword,
+    updateProfile,
+    signInWithEmailAndPassword
 } from "firebase/auth";
 import {
     setDoc,
@@ -35,7 +34,18 @@ export const logInWithGoogle = async () => {
         alert(err.message);
     }
 };
-
+export const logInWithEmailAndPwd = async (email, password) =>{
+   return signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            return true;
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            return false;
+          });
+};
 
 export const logout = () => {
     signOut(auth);
