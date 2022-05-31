@@ -1,16 +1,20 @@
-
+import { deleteInvoice } from "../firebase/lists";
+import { auth } from "../firebase/init";
+import { useAuthState } from "react-firebase-hooks/auth";
 const DeletePopup = (props)=>{
+    const user =useAuthState(auth);
     const {list, stateFunc, id, setVisibility } = props;
     const onClickRemoveItem = ()=>{
-        list.splice(id, 1); // temporary solution, when calls to api will 
+        // list.splice(id, 1); // temporary solution, when calls to api will 
         //appear then I am gonna add aditional fields so i can later use filter
-        stateFunc(list);
+        // stateFunc(list);
+        deleteInvoice(user ,id);
         setVisibility(false);
+        // window.location.reload(true);
     };
     const onClickQuit = ()=>{
         setVisibility(false);
     };
-    console.log(id);
     return(
     <div className="popup-box">
         <div className="box">

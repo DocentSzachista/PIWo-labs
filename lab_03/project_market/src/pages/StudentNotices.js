@@ -5,6 +5,7 @@ import { addToBasket } from "../basket/actions";
 import Cart from "../assets/cart.svg";
 import "../styles/cart.css";
 import { fetchData } from "../api/fetchData";
+
 const StudentNotices = (props) =>{
     const [popup, showPopup] = useState(false);
     const [index, setIndex] = useState(null);
@@ -68,8 +69,8 @@ const StudentNotices = (props) =>{
                 <div className="card-footer">
                     { generateCourses(iterator.courses)}
                     <div className="d-flex justify-content-between">
-                        <button className="btn btn-secondary">Edit </button>
-                        <button className="btn btn-danger" onClick={()=>{showPopup(true); setIndex(index)}}>Delete</button>
+                        <button className="btn btn-secondary" onClick={()=>{navigate("studentNotices/edit", {state: iterator }) }}>Edit </button>
+                        <button className="btn btn-danger" onClick={()=>{showPopup(true); setIndex(iterator.id)}}>Delete</button>
                     </div>
                 </div>
 
