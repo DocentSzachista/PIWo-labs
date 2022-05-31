@@ -1,11 +1,10 @@
 
 import GroupNoticesForm from '../../../components/GroupNoticesForm';
-const AddGroupNotice = (props) =>{
-    const {addNewGroupNotice} = props;
-    
+import { addNewGroupNotice } from '../../../firebase/groupNotices';
+const AddGroupNotice = () =>{
     const onSubmit = async values =>{
         const ppl = values.people.trim().split(";");
-        const emails = values.emails.trim().split(" ");
+        const emails = values.emails.trim().split(";");
         const dataToSet = {
             groupName: values.groupName,
             course: values.course,
@@ -13,7 +12,7 @@ const AddGroupNotice = (props) =>{
             people: emails.map( (email, it) =>({email, name: ppl[it]} ) ),
         };
         console.log(dataToSet);
-        addNewGroupNotice(dataToSet);
+        await addNewGroupNotice(dataToSet);
         alert("Dodano nową grupę");
     };
     return(

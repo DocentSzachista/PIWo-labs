@@ -1,8 +1,11 @@
 import GroupNoticesForm from "../../../components/GroupNoticesForm";
 import { useParams } from "react-router-dom";
+import { updateGroupInvoice } from "../../../firebase/groupNotices";
 const ModifyGroupNotices= (props)=>{
     const {list, setList} = props;
-    const id = parseInt(useParams().id);
+    const id = useParams().id;
+    const element = list.filter((iterator) => iterator.id === id)[0];
+    console.log(element);
     const onSubmit = async values =>{
         const ppl = values.people.trim().split(";");
         const emails = values.emails.trim().split(" ");
@@ -12,12 +15,12 @@ const ModifyGroupNotices= (props)=>{
             description: values.description,
             people: emails.map( (email, it) =>({email, name: ppl[it]} ) ),
         };
-        list[id] = dataToSet;
-        setList(list);
+        await updateGroupInvoice(id, dataToSet);
         alert("Zmodyfikowano");
     }
     return(
-        <GroupNoticesForm element={list[id]} isEdit={true} title={"Modyfikuj dane o grupie"} onSubmit={onSubmit} />
+        
+        <GroupNoticesForm element={element} isEdit={true} title={"Modyfikuj dane o grupie"} onSubmit={onSubmit} />
     );
 }; 
 export default ModifyGroupNotices;

@@ -42,8 +42,8 @@ export const readAllStudentNotices = async(user) =>{
 };
 export const updateInvoice = async (id, content) =>{
     try{
-    const bookDoc = doc(firestore, "studentInvoices", id);
-    return updateDoc(bookDoc, content);
+    const groupDoc = doc(firestore, "studentInvoices", id);
+    return updateDoc(groupDoc, content);
     }
     catch(err){
         console.log(err);

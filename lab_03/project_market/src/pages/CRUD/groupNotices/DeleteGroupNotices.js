@@ -1,12 +1,10 @@
 import { Link, useParams  } from "react-router-dom";
-const DeleteGroupNotices = (props)=>{
-    const {list, set} = props;
-    const id = parseInt(useParams().id);
-
-    const onClickRemoveItem = ()=>{
-        list.splice(id, 1); // temporary solution, when calls to api will 
-        //appear then I am gonna add aditional fields so i can later use filter
-        set(list);
+import { deleteGroupInvoice } from "../../../firebase/groupNotices";
+const DeleteGroupNotices = ()=>{
+    const id = useParams().id;
+    console.log(id);
+    const onClickRemoveItem = async ()=>{
+        deleteGroupInvoice(id); 
     };
 
     return(

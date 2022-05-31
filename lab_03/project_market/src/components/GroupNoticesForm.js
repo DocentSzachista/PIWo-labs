@@ -1,6 +1,7 @@
 import { Field, Formik, Form } from 'formik';
 const GroupNoticesForm = (props)=>{
     const {element,  title,  isEdit, onSubmit} = props;
+    console.log(element);
     let initialValues = {
         people: "",
         emails: "",
@@ -9,7 +10,6 @@ const GroupNoticesForm = (props)=>{
         course: ""
     };
     if (isEdit){
-        
         let emails = "";
         let people = "";
         element.people.forEach( (element, _) =>{
@@ -24,7 +24,7 @@ const GroupNoticesForm = (props)=>{
             groupName: element.groupName,
             course: element.course
         };
-        // console.log(initialValues);
+        console.log(initialValues);
     }
     const validate = values =>{
         return {};
